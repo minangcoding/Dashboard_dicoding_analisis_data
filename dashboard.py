@@ -1,15 +1,12 @@
-
-
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+import warnings
 from datetime import date
-import os
-import numpy as np
 
-# Memastikan kompatibilitas seaborn dengan pandas terbaru
-sns.set_theme()
+# Abaikan peringatan FutureWarning dari seaborn
+warnings.filterwarnings("ignore", category=FutureWarning, module="seaborn")
 
 # Membaca data
 day_df = pd.read_csv("day.csv")
@@ -19,6 +16,7 @@ day_df['dteday'] = pd.to_datetime(day_df['dteday'])
 st.sidebar.header("Select Date Range")
 min_date = day_df['dteday'].min().date()
 max_date = day_df['dteday'].max().date()
+
 default_start_date = min_date
 default_end_date = max_date
 
